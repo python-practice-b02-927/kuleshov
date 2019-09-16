@@ -2,6 +2,7 @@
 
 from pyrob.api import *
 
+
 def cross():
     move_right()
     fill_cell()
@@ -17,21 +18,22 @@ def cross():
     fill_cell()
     move_up(n=2)
     move_left()
-@task(delay=0.02)
-def task_2_4():
-	
-    for i in range(4):
-        for j in range(9):
-            cross()
-            move_right(4)
-        cross()
-        move_left(36)
-        move_down(4)
+
+
+def string_cross():
     for j in range(9):
         cross()
         move_right(4)
     cross()
     move_left(36)
+
+
+@task(delay=0.02)
+def task_2_4():
+    for i in range(4):
+        string_cross()
+        move_down(4)
+    string_cross()
 
 
 if __name__ == '__main__':
