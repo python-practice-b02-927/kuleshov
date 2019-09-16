@@ -5,14 +5,14 @@ Created on Tue Sep 10 09:50:40 2019
 
 @author: student
 """
-
-import turtle
+from turtle import *
 
 n = 12
 a = 200
 
-turtle.shape('turtle')
-for i in range(12):
-    turtle.forward(a)
-    turtle.backward(a)
-    turtle.right(360/n)
+shape('turtle')
+for i in range(n):
+    forward(a)
+    stamp()
+    backward(a)
+    right(360/n)
