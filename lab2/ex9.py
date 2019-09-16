@@ -11,16 +11,19 @@ from math import *
 
 a = 100
 k = 7
-c = 10
+c = 30
 
-def polygon(n,a):
+
+def polygon(n, a):
     for i in range(n):
         forward(a)
         left(360/n)
-        
-def rad(n,a):
-    return a/(2*sin(2*pi/n))
-        
+
+
+def rad(n, a):
+    return a/(2*sin(pi/n))
+
+
 shape('turtle')
 n = 3
 right(180)
@@ -28,10 +31,10 @@ right(180)
 for i in range(k):
     pendown()
     right(180*(n-2)/(n*2))
-    polygon(n,a)
+    polygon(n, a)
     left(180*(n-2)/(n*2))
     penup()
     backward(c)
-    R = rad(n,a)
-    a = (R+c)*2*sin(2*pi/(n+1))
+    R = rad(n, a)
+    a = (R+c)*2*sin(pi/(n+1))
     n += 1
