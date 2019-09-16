@@ -7,15 +7,15 @@ from pyrob.api import *
 def task_7_5():
 
     move_right()
-    a = 1
+    a = True
     i = 1
-    while a == 1:
+    while a:
         fill_cell()
         for j in range(i):
             if not wall_is_on_the_right():
                 move_right()
             else:
-                a = 0
+                a = False
                 break
         i += 1
 
