@@ -6,13 +6,9 @@ Created on Tue Sep 10 09:40:25 2019
 @author: student
 """
 
-import turtle
+from turtle import *
 
-turtle.shape('turtle')
-turtle.forward(50)
-turtle.left(90)
-turtle.forward(50)
-turtle.left(90)
-turtle.forward(50)
-turtle.left(90)
-turtle.forward(50)
+shape('turtle')
+for i in range(4):
+    forward(50)
+    left(90)
