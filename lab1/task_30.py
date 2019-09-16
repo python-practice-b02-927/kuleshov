@@ -2,6 +2,7 @@
 
 from pyrob.api import *
 
+
 def square(f):
     move_right()
     for i in range(f-2):
@@ -19,6 +20,8 @@ def square(f):
     for i in range(f-2):
         fill_cell()
         move_up()
+
+
 @task(delay=0.01)
 def task_9_3():
 
@@ -37,7 +40,6 @@ def task_9_3():
     move_left((w-1)//2)
     move_down((w-1)//2)
     
-
 
 if __name__ == '__main__':
     run_tasks()
