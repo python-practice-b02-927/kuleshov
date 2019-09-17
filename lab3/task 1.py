@@ -91,9 +91,29 @@ leaflayer2 = gr.Polygon(gr.Point(670, 350), gr.Point(710, 270), gr.Point(750, 35
 leaflayer2.setFill('darkgreen')
 leaflayer2.draw(window)
 
-leaflayer3 = gr.Polygon(gr.Point(680, 320), gr.Point(710, 220), gr.Point(740, 320))
+leaflayer3 = gr.Polygon(gr.Point(675, 320), gr.Point(710, 220), gr.Point(745, 320))
 leaflayer3.setFill('darkgreen')
 leaflayer3.draw(window)
+
+house = gr.Rectangle(gr.Point(20, 250), gr.Point(120, 350))
+house.setFill('gray')
+house.draw(window)
+
+roof = gr.Polygon(gr.Point(20, 250), gr.Point(70, 200), gr.Point(120, 250))
+roof.setFill('brown')
+roof.draw(window)
+
+wind1 = gr.Rectangle(gr.Point(50, 280), gr.Point(90, 320))
+wind1.setFill('yellow')
+wind1.draw(window)
+
+wline1 = gr.Line(gr.Point(70, 280), gr.Point(70, 320))
+wline1.setWidth(3)
+wline1.draw(window)
+
+wline2 = gr.Line(gr.Point(50, 300), gr.Point(90, 300))
+wline2.setWidth(3)
+wline2.draw(window)
 
 window.getMouse()
 
