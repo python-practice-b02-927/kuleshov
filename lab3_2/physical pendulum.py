@@ -21,6 +21,10 @@ def absolute(point):
     return ab
 
 
+def move_ball(ball, vel):
+    ball.move(vel.x, vel.y)
+
+
 def main():
     coords1 = gr.Point(400, 600)
     coords2 = gr.Point(400, 300)
