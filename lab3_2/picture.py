@@ -12,6 +12,13 @@ def sky():
     sky.draw(window)
 
 
+def sun():
+    sun = gr.Circle(gr.Point(SIZE_X, 0), SIZE_X / 10)
+    sun.setFill('yellow')
+    sun.setOutline('yellow')
+    sun.draw(window)
+
+
 def ground():
     ground = gr.Rectangle(gr.Point(0, SIZE_Y / 2), gr.Point(SIZE_X, SIZE_Y))
     ground.setFill('green')
@@ -58,7 +65,7 @@ def tree(x1, y1, x2, y2):
     fruit.setOutline('yellow')
     fruit.draw(window)
 
-    fruit = gr.Oval(gr.Point(x1 + dx * 13 / 24, y1 + dy * 15 / 36), gr.Point(x1 + dx * 17 / 24, y1 + dy * 18 / 36))
+    fruit = gr.Oval(gr.Point(x1 + dx * 13 / 24, y1 + dy * 24 / 36), gr.Point(x1 + dx * 17 / 24, y1 + dy * 27 / 36))
     fruit.setFill('yellow')
     fruit.setOutline('yellow')
     fruit.draw(window)
@@ -67,6 +74,7 @@ def tree(x1, y1, x2, y2):
 
 def main():
     sky()
+    sun()
     ground()
     tree(100, 100, 300, 500)
 
