@@ -7,33 +7,40 @@ window = gr.GraphWin("Model", SIZE_X, SIZE_Y)
 
 
 def add(point_1, point_2):
+    """Return the sum of point_1 and point_2"""
     new_point = gr.Point(point_1.x + point_2.x, point_1.y + point_2.y)
     return new_point
 
 
 def sub(point_1, point_2):
+    """Return the result of subtracting point_2 from point_1"""
     new_point = gr.Point(point_1.x - point_2.x, point_1.y - point_2.y)
     return new_point
 
 
-def absolute(point):
-    ab = (point.x**2 + point.y**2)**0.5
+def absolute(v):
+    """Return the magnitude of vector 'v'"""
+    ab = (v.x**2 + v.y**2)**0.5
     return ab
 
 
 def move_ball(ball, vel):
+    """Move the ball according to its velocity"""
     ball.move(vel.x, vel.y)
 
 
 def update_coords(coords, velocity):
+    """Update coordinates according to velocity"""
     return add(coords, velocity)
 
 
 def update_velocity(velocity, acceleration):
+    """Update velocity according to acceleration"""
     return add(velocity, acceleration)
 
 
 def update_acceleration(ball_coords, center_coords, velocity, I, m1, m2):
+    """Update acceleration of the selected ball according to the conditions of the system"""
     diff = sub(ball_coords, center_coords)
     distance = absolute(diff)
     g = 1
@@ -45,6 +52,7 @@ def update_acceleration(ball_coords, center_coords, velocity, I, m1, m2):
 
 
 def velocity2(vel1):
+    """Return the velocity of the second ball depending on the velocity of the first one"""
     vel2 = gr.Point((-1)*vel1.x*1/2, (-1)*vel1.y*1/2)
     return vel2
 
