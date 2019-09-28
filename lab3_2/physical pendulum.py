@@ -16,6 +16,11 @@ def sub(point_1, point_2):
     return new_point
 
 
+def absolute(point):
+    ab = (point.x**2 + point.y**2)**0.5
+    return ab
+
+
 def main():
     coords1 = gr.Point(400, 600)
     coords2 = gr.Point(400, 300)
