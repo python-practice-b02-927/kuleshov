@@ -44,6 +44,11 @@ def update_acceleration(ball_coords, center_coords, velocity, I, m1, m2):
     return add(an, at)
 
 
+def velocity2(vel1):
+    vel2 = gr.Point((-1)*vel1.x*1/2, (-1)*vel1.y*1/2)
+    return vel2
+
+
 def main():
     coords1 = gr.Point(400, 600)
     coords2 = gr.Point(400, 300)
