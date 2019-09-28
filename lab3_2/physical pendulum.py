@@ -11,6 +11,11 @@ def add(point_1, point_2):
     return new_point
 
 
+def sub(point_1, point_2):
+    new_point = gr.Point(point_1.x - point_2.x, point_1.y - point_2.y)
+    return new_point
+
+
 def main():
     coords1 = gr.Point(400, 600)
     coords2 = gr.Point(400, 300)
