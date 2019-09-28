@@ -29,6 +29,10 @@ def update_coords(coords, velocity):
     return add(coords, velocity)
 
 
+def update_velocity(velocity, acceleration):
+    return add(velocity, acceleration)
+
+
 def main():
     coords1 = gr.Point(400, 600)
     coords2 = gr.Point(400, 300)
