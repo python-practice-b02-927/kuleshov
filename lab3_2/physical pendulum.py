@@ -59,3 +59,5 @@ def main():
     r2 = 10
     m1 = 400
     m2 = 50
+
+    I = m1 * absolute(sub(coords1, center)) ** 2 + m2 * absolute(sub(coords2, center)) ** 2
