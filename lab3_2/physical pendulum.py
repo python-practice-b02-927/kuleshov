@@ -53,11 +53,50 @@ def main():
     coords1 = gr.Point(400, 600)
     coords2 = gr.Point(400, 300)
     center = gr.Point(400, 400)
-    distance = 200
     velocity1 = gr.Point(5, 0)
     r1 = 20
     r2 = 10
+    r = 5
     m1 = 400
     m2 = 50
 
     I = m1 * absolute(sub(coords1, center)) ** 2 + m2 * absolute(sub(coords2, center)) ** 2
+
+    connecting_line = gr.Line(coords1, coords2)
+    connecting_line.setFill('black')
+    connecting_line.setWidth(2)
+    connecting_line.draw(window)
+
+    ball1 = gr.Circle(coords1, r1)
+    ball1.setFill('black')
+    ball1.draw(window)
+
+    ball2 = gr.Circle(coords2, r2)
+    ball2.setFill('black')
+    ball2.draw(window)
+
+    center_ball = gr.Circle(center, r)
+    center_ball.setFill('black')
+    center_ball.draw(window)
+
+    while True:
+        coords1 = update_coords(coords1, velocity1)
+        coords2 = update_coords(coords2, velocity2(velocity1))
+        connecting_line.undraw()
+        connecting_line = gr.Line(coords1, coords2)
+        connecting_line.setFill('black')
+        connecting_line.setWidth(2)
+        connecting_line.draw(window)
+
+        move_ball(ball1, velocity1)
+        move_ball(ball2, velocity2(velocity1))
+        acceleration = update_acceleration(coords1, center, velocity1, I, m1, m2)
+        velocity1 = update_velocity(velocity1, acceleration)
+
+        gr.time.sleep(0.02)
+
+
+main()
+
+
+
