@@ -20,9 +20,9 @@ c.create_polygon(40, 110, 160, 110, 190, 180, 10, 180,
 c.create_oval(50, 10, 150, 110, width=2)
 c.create_oval(10, 120, 190, 190, fill='grey70', outline='white')
 
-c.create_text(150, 150, text="Hi",
+c.create_text(150, 150, text="WE LIVE IN A SOCIETY",
                 justify=CENTER, font="Verdana 14")
-c.create_text(300, 300, text="About this",
+c.create_text(300, 300, text="BOTTOM TEXT",
                 anchor=SE, fill="yellow")
 
 root.mainloop()
