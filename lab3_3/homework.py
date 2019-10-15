@@ -1,6 +1,7 @@
 from tkinter import *
 from random import randrange as rnd, choice
 import time
+import json
 
 root = Tk()
 root.geometry('900x700')
@@ -12,9 +13,11 @@ height = 600
 
 l = Label(root, bg='black', fg='white', width=20, font=('Courier', 44))
 canv = Canvas(root, width=800, height=600, bg='white')
+b = Button(root, text="Сохранить результат")
 
 l.pack()
 canv.pack(fill=BOTH)
+b.pack()
 l['text'] = 'Score: 0'
 
 
@@ -27,7 +30,7 @@ def add(point_1, point_2):
     return new_point
 
 
-def new_ball():
+def new_balls():
     global balls
 
     for i in range(q):
@@ -38,7 +41,7 @@ def new_ball():
         velocity = [rnd(1, 10), rnd(1, 10)]
         balls.append([ball, velocity])
 
-    root.after(2000, new_ball)
+    root.after(2000, new_balls)
 
 
 def getxyr(ball):
@@ -67,7 +70,7 @@ def move_balls():
             vel[1] *= -1
 
         canv.coords(i[0], x - r + vel[0], y - r + vel[1], x + r + vel[0], y + r + vel[1])
-    root.after(100, move_balls)
+    root.after(50, move_balls)
 
 
 def click(event):
@@ -82,7 +85,34 @@ def click(event):
         l['text'] = 'Score: ' + str(count)
 
 
-new_ball()
+def save(event):
+    global count, leaderboard
+    if (len(leaderboard) < 10) or (count > min(leaderboard)):
+        leaderboard.append(count)
+        leaderboard.sort(reverse=True)
+        leaderboard = leaderboard[:10]
+        with open('leaderboard.json', 'w') as f:
+            lst1 = [[j + 1, leaderboard[j]] for j in range(len(leaderboard))]
+            json.dump(lst1, f, indent=2)
+
+
+leaderboard = []
+try:
+    file = open('leaderboard.json', 'r')
+except:
+    pass
+else:
+    try:
+        lst = json.load(file)
+    except:
+        pass
+    else:
+        leaderboard = [lst[i][1] for i in range(len(lst))]
+    file.close()
+    print(leaderboard)
+
+new_balls()
 move_balls()
 canv.bind('<Button-1>', click)
+b.bind('<Button-1>', save)
 mainloop()
