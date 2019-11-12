@@ -231,7 +231,7 @@ class Gun(Agent):
         dx = self.mouse_coords[0]-self.gun_coords[0]
         dy = self.mouse_coords[1]-self.gun_coords[1]
         if dx != 0:
-            self.an = math.atan(dy / dx)
+            self.an = math.atan2(dy, dx)
         else:
             self.an = 1
 
