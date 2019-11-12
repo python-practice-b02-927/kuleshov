@@ -15,6 +15,7 @@ DT = 30
 VICTORY_MSG_TIME = 3000
 WINDOW_SHAPE = (800, 600)
 G = 0.5
+number = 1 # 1 if left gun is chosen, 2 if right
 
 
 def pass_event(event):
@@ -365,7 +366,8 @@ class BattleField(tk.Canvas):
 
         self.num_targets = 2
 
-        self.gun = Gun(self)
+        self.gun1 = Gun(self)
+        self.gun2 = Gun(self, gun_coords_init = [780, 450])
         self.targets = {}
         self.bullets = {}
 
@@ -376,9 +378,11 @@ class BattleField(tk.Canvas):
         self.last_hit_bullet_number = None
         self.victory_text_id = self.create_text(
             WINDOW_SHAPE[0] // 2, WINDOW_SHAPE[1] // 2, text='', font='28')
+        self.get_root().bind('<Key-t>', self.change_gun)
 
         self.catch_victory_job = None
         self.canvas_restart_job = None
+        number = 1
 
     def remove_targets(self, targets_to_remove=None):
         if targets_to_remove is None:
@@ -420,7 +424,10 @@ class BattleField(tk.Canvas):
 
     def start(self):
         self.catch_victory_job = self.after(DT, self.catch_victory)
-        self.gun.start()
+        if number == 1:
+            self.gun1.start()
+        else:
+            self.gun2.start()
         for t in self.targets.values():
             t.start()
         for b in self.bullets.values():
@@ -435,14 +442,20 @@ class BattleField(tk.Canvas):
 
     def play(self):
         self.play_jobs()
-        self.gun.play()
+        if number == 1:
+            self.gun1.play()
+        else:
+            self.gun2.play()
         for t in self.targets.values():
             t.play()
         for b in self.bullets.values():
             b.play()
 
     def stop(self):
-        self.gun.stop()
+        if number == 1:
+            self.gun1.stop()
+        else:
+            self.gun2.stop()
         for t in self.targets.values():
             t.stop()
         for b in self.bullets.values():
@@ -463,7 +476,10 @@ class BattleField(tk.Canvas):
             self.canvas_restart_job = 'pause'
 
     def pause(self):
-        self.gun.pause()
+        if number == 1:
+            self.gun1.pause()
+        else:
+            self.gun2.pause()
         for t in self.targets.values():
             t.pause()
         for b in self.bullets.values():
@@ -520,7 +536,8 @@ class BattleField(tk.Canvas):
 
     def get_state(self):
         state = {
-            "gun": self.gun.get_state(),
+            "gun1": self.gun1.get_state(),
+            "gun2": self.gun2.get_state(),
             "targets": [t.get_state() for t in self.targets.values()],
             "bullets": [b.get_state() for b in self.bullets.values()],
             "bullet_counter": self.bullet_counter,
@@ -532,7 +549,8 @@ class BattleField(tk.Canvas):
         return state
 
     def set_state(self, state, job_init):
-        self.gun.set_state(state['gun'], job_init)
+        self.gun1.set_state(state['gun1'], job_init)
+        self.gun2.set_state(state['gun2'], job_init)
         self.remove_targets()
         self.create_targets_from_states(state['targets'], job_init)
         self.remove_bullets()
@@ -544,6 +562,17 @@ class BattleField(tk.Canvas):
             job_init if state['catch_victory_job'] else None
         self.canvas_restart_job = \
             job_init if state['canvas_restart_job'] else None
+
+    def change_gun(self, event):
+        global number
+        if number == 1:
+            number = 2
+            self.gun1.stop()
+            self.gun2.start()
+        else:
+            number = 1
+            self.gun2.stop()
+            self.gun1.start()
 
 
 class MainFrame(tk.Frame):
