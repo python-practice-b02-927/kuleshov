@@ -171,7 +171,7 @@ class Ball(Agent):
 
 
 class Gun(Agent):
-    def __init__(self, canvas):
+    def __init__(self, canvas, gun_coords_init = [20,450]):
         super().__init__()
 
         self.gun_velocity = 1
@@ -180,7 +180,7 @@ class Gun(Agent):
         self.max_gun_power = 70
         self.zero_power_length = 20
 
-        self.gun_coords = [20,450]
+        self.gun_coords = gun_coords_init
         self.vy = 0
         self.mouse_coords = [None, None]
         self.f2_power = 10
